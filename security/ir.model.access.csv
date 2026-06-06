@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_write,perm_create,perm_unlink,perm_read
+access_user_tienda_juegos,acceso_a_la_tienda,model_tienda_videojuegos,base.group_system,1,1,1,1,1
