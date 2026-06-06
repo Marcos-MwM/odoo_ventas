@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Odoo
+*.log
+.odoo_debug
+
+# VSCode
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
