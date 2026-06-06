@@ -1,0 +1,160 @@
+<odoo>
+    <record id="view_tienda_videojuegos_tree" model="ir.ui.view">
+        <field name="name">tienda.videojuegos.tree</field>
+        <field name="model">tienda.videojuegos</field>
+
+        <field name="arch" type="xml">
+
+            <list string="Videojuegos">
+
+                <field name="codigo"/>
+                <field name="name"/>
+                <field name="topic"/>
+                <field name="precio"/>
+                <field name="stock"/>
+                <field name="estado"/>
+
+            </list>
+
+        </field>
+    </record>
+
+    <record id="view_tienda_videojuegos_form" model="ir.ui.view">
+        <field name="name">tienda.videojuegos.form</field>
+        <field name="model">tienda.videojuegos</field>
+
+        <field name="arch" type="xml">
+
+            <form string="Videojuegos">
+
+                <sheet>
+                     <div class="oe_title"> 
+                                <h1>
+                                    <field name="name" placeholder='Coloque un nombre'/>                            
+                                </h1>
+                     </div>
+
+
+
+                    <group>
+
+                        <group>
+                            <field name="codigo" readonly="1"/>
+                            <field name="topic"/>
+                            <field name="estado"/>
+
+                        </group>
+
+                        <group>
+                            <field name="precio"/>
+                            <field name="stock"/>
+                            <field name="distribuidoras_compatibles"/>
+                        </group>
+
+                    </group>
+
+                    <notebook>
+
+                        <page string="Sinopsis">
+
+                            <field name="sinopsis"/>
+
+                        </page>
+
+                        <page string="Notas">
+
+                            <field name="notas_del_administrador"/>
+
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+
+            </form>
+
+        </field>
+    </record>
+    <record id="view_videojuegos_search" model="ir.ui.view">
+
+        <field name="name">tienda.videojuegos.search</field>
+
+        <field name="model">tienda.videojuegos</field>
+
+        <field name="arch" type="xml">
+
+            <search>
+
+                <field name="name"/>
+                <field name="codigo"/>
+
+                <separator/>
+
+                <filter
+                    name="accion"
+                    string="Acción"
+                    domain="[('topic','=','accion')]"/>
+
+                <filter
+                    name="disponible"
+                    string="Disponibles"
+                    domain="[('estado','=','disponible')]"/>
+
+                <separator/>
+
+                <group expand="0" string="Agrupar por">
+
+                    <filter
+                        name="group_topic"
+                        string="Género"
+                        context="{'group_by':'topic'}"/>
+
+                    <filter
+                        name="group_estado"
+                        string="Estado"
+                        context="{'group_by':'estado'}"/>
+
+                </group>
+
+                <searchpanel>
+
+                    <field name="topic"/>
+                    <field name="estado"/>
+
+                </searchpanel>
+
+            </search>
+            
+
+        </field>
+
+    </record>
+
+    <record id="action_tienda_videojuegos"
+            model="ir.actions.act_window">
+
+        <field name="name">Videojuegos</field>
+
+        <field name="res_model">tienda.videojuegos</field>
+
+        <field name="view_mode">list,form</field>
+
+        <field name="search_view_id"
+            ref="view_videojuegos_search"/>
+
+    </record>
+
+    <menuitem
+    id="menu_tienda_root"
+    name="Tienda Videojuegos"
+    sequence="1"/>
+
+    <menuitem
+    id="menu_tienda_videojuegos"
+    name="Videojuegos"
+    parent="menu_tienda_root"
+    action="action_tienda_videojuegos"
+    sequence="1"/>
+
+
+</odoo>
